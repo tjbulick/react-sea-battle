@@ -1,3 +1,5 @@
+# [Лайв-превью можно посмотреть здесь](https://tjbulick.github.io/react-sea-battle/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
