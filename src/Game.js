@@ -62,16 +62,16 @@ class Game extends React.Component {
     }
 
     this.setState((state) => {
-      const copiedField = [...state.enemyField];
-      copiedField[y][x].shot = true;
-      copiedField[y][x].isShipVisible = true;
+      const newField = [...state.enemyField];
+      newField[y][x].shot = true;
+      newField[y][x].isShipVisible = true;
 
-      const copiedLogs = [...state.logs];
-      copiedLogs.push(`${this.state.enemyField[y][x].containsShip ? 'Попадание!' : 'Мимо!'}`);
+      const newLogs = [...state.logs];
+      newLogs.push(`${this.state.enemyField[y][x].containsShip ? 'Попадание!' : 'Мимо!'}`);
 
       return {
-        enemyField: copiedField,
-        logs: copiedLogs,
+        enemyField: newField,
+        logs: newLogs,
       }
     })
   }
