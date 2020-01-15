@@ -7,7 +7,7 @@ export default function GameLog(props) {
             <ul className="gamelog-list">
                 {props.logs.map((item, index) => {
                     return (
-                        <li>{`${(index === 0) ? '' : String(index) + '.'} ${item}`}</li>
+                        <li key={index}>{`${(index === 0) ? '' : String(index) + '.'} ${item}`}</li>
                     )
                 })}
             </ul>
