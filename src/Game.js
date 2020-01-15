@@ -6,7 +6,7 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      playerField: [],
+      // playerField: [],
       enemyField: [],
       logs: ['Ожидание хода...'],
     };
