@@ -7,7 +7,9 @@ class Game extends React.Component {
     super(props);
     this.state = {
       // playerField: [],
+      // arePlayerShipsInvisible: true,
       enemyField: [],
+      areEnemyShipsInvisible: true,
       logs: ['Ожидание хода...'],
     };
 
