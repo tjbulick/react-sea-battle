@@ -1,15 +1,20 @@
 import React from 'react';
 import Field from './components/Field';
 import GameLog from './components/GameLog';
+import placeShip from './utils/placeShip';
+import standardShipsSet from './utils/standardShipsSet';
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       // playerField: [],
+      // playerShips: [],
       // arePlayerShipsInvisible: true,
       enemyField: [],
+      enemyShips: [...standardShipsSet],
       areEnemyShipsInvisible: true,
+      gameOver: false,
       logs: ['Ожидание хода...'],
     };
 
@@ -26,53 +31,58 @@ class Game extends React.Component {
           containsShip: false,
           shot: false,
           isShipVisible: false,
+          shipId: null,
         });
       }
     }
 
-    // расставляем корабли
-    for (let i = 0; i < 4; i++) {
-      this.state.enemyField[0][i].containsShip = true;
-    }
-
-    for (let i = 0; i < 3; i++) {
-      this.state.enemyField[i+3][6].containsShip = true;
-    }
-    for (let i = 0; i < 3; i++) {
-      this.state.enemyField[i+2][1].containsShip = true;
-    }
-
-    for (let i = 0; i < 2; i++) {
-      this.state.enemyField[9][i].containsShip = true;
-    }
-    for (let i = 0; i < 2; i++) {
-      this.state.enemyField[7][i+3].containsShip = true;
-    }
-    for (let i = 0; i < 2; i++) {
-      this.state.enemyField[9][i+6].containsShip = true;
-    }
-
-    this.state.enemyField[4][3].containsShip = true;
-    this.state.enemyField[2][9].containsShip = true;
-    this.state.enemyField[5][9].containsShip = true;
-    this.state.enemyField[9][9].containsShip = true;
+    // расставляем стандартный набор кораблей
+    this.state.enemyShips.forEach(ship => {
+      placeShip(this.state.enemyField, ship)
+    });
   }
 
   handleClick(y, x) {
     if (this.state.enemyField[y][x].shot) {
-      return;
+      return
     }
 
-    this.setState((state) => {
+    if (this.state.gameOver) {
+      return
+    }
+
+    this.setState(state => {
       const newField = [...state.enemyField];
       newField[y][x].shot = true;
       newField[y][x].isShipVisible = true;
 
+      const newShips = [...state.enemyShips];
       const newLogs = [...state.logs];
-      newLogs.push(`${this.state.enemyField[y][x].containsShip ? 'Попадание!' : 'Мимо!'}`);
+      let gameOver = false;
+
+      if (newField[y][x].containsShip) {
+        const hittedShip = newShips.find(ship => (ship.id === newField[y][x].shipId));
+        hittedShip.hitpoints--;
+        // если хитпоинтов больше нуля, то это обычное попадание
+        // если хитпоинтов ноль, то корабль уничтожен
+        if (hittedShip.hitpoints > 0) {
+          newLogs.push('Попадание!');
+        } else {
+          newLogs.push('Корабль уничтожен!');
+        }
+
+        if (newShips.every(ship => (ship.hitpoints === 0))) {
+          newLogs.push('Игра окончена.');
+          gameOver = true;
+        }
+      } else {
+        newLogs.push('Мимо!');
+      }
 
       return {
         enemyField: newField,
+        enemyShips: newShips,
+        gameOver: gameOver,
         logs: newLogs,
       }
     })
