@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8c9898df5aac047c32a1e5c024e1be90",
+    "revision": "331adf90be4e58bd749c86f0e510bcc0",
     "url": "/react-sea-battle/index.html"
   },
   {
-    "revision": "144e7ab0901cda8c07fc",
+    "revision": "ce6aac4e5b74bb302715",
     "url": "/react-sea-battle/static/css/main.063da00f.chunk.css"
   },
   {
-    "revision": "ee8602b665573605d849",
-    "url": "/react-sea-battle/static/js/2.8db5d7df.chunk.js"
+    "revision": "b0b915a4c4f10b37a175",
+    "url": "/react-sea-battle/static/js/2.2a896c15.chunk.js"
   },
   {
     "revision": "d705cb622423d72c5defbf368ca70dcc",
-    "url": "/react-sea-battle/static/js/2.8db5d7df.chunk.js.LICENSE"
+    "url": "/react-sea-battle/static/js/2.2a896c15.chunk.js.LICENSE"
   },
   {
-    "revision": "144e7ab0901cda8c07fc",
-    "url": "/react-sea-battle/static/js/main.749e5b36.chunk.js"
+    "revision": "ce6aac4e5b74bb302715",
+    "url": "/react-sea-battle/static/js/main.d51d1b2b.chunk.js"
   },
   {
     "revision": "218a2f05aa7d8bdd651d",
